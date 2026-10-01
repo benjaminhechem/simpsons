@@ -1,0 +1,2430 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN BASE Y FUENTES
+   ========================================================================== */
+
+/* CARGA DE TIPOGRAFÍA: Importa la fuente personalizada de Los Simpson */
+@font-face {
+    font-family: 'SimpsonFont';
+    src: url('../fonts/Simpsonfont\ DEMO.otf') format('opentype');
+}
+
+/* RESETEO UNIVERSAL: Quita márgenes y rellenos por defecto en todas las etiquetas */
+* {
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* CONTENEDOR RAÍZ (HTML): Define el color del cielo y evita scroll horizontal */
+html {
+    background-color: var(--celeste) !important;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* CUERPO DEL SITIO (BODY): Aplica la fuente y fondo transparente para ver el cielo */
+body {
+    font-family: 'SimpsonFont', sans-serif;
+    background-color: transparent !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================================================
+   2. SISTEMA DE NUBES ANIMADAS (Caótico y abundante)
+   ========================================================================== */
+
+/* CAPAS FANTASMA BASE: Crea 4 lienzos invisibles y fijos detrás del contenido */
+html::before, html::after, body::before, body::after {
+    content: "";
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0;
+    width: 8000px; /* SOLUCIÓN: Lienzo gigantesco para que no se corten las nubes */
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+}
+
+/* NUBES CAPA 1: Bucle de 3000px - 6 nubes esparcidas (3 reales + 3 clones para el loop) */
+html::before {
+    background-image: 
+        url('../imagenes/nube1.png'), url('../imagenes/nube2.png'), url('../imagenes/nube3.png'),
+        url('../imagenes/nube1.png'), url('../imagenes/nube2.png'), url('../imagenes/nube3.png');
+    background-size: 200px, 280px, 150px, 200px, 280px, 150px;
+    background-position: 
+        100px 12%, 1200px 38%, 2200px 75%,
+        3100px 12%, 4200px 38%, 5200px 75%;
+    animation: viento1 60s linear infinite;
+}
+@keyframes viento1 {
+    from { transform: translateX(-3000px); }
+    to { transform: translateX(0); }
+}
+
+/* NUBES CAPA 2: Bucle de 3500px - Otras 6 nubes con posiciones totalmente distintas */
+html::after {
+    background-image: 
+        url('../imagenes/nube3.png'), url('../imagenes/nube1.png'), url('../imagenes/nube2.png'),
+        url('../imagenes/nube3.png'), url('../imagenes/nube1.png'), url('../imagenes/nube2.png');
+    background-size: 180px, 220px, 350px, 180px, 220px, 350px;
+    background-position: 
+        400px 25%, 1600px 65%, 2800px 15%,
+        3900px 25%, 5100px 65%, 6300px 15%;
+    animation: viento2 80s linear infinite;
+}
+@keyframes viento2 {
+    from { transform: translateX(-3500px); }
+    to { transform: translateX(0); }
+}
+
+/* NUBES CAPA 3: Bucle de 2800px - Tamaños medianos cruzando rápido */
+body::before {
+    background-image: 
+        url('../imagenes/nube2.png'), url('../imagenes/nube3.png'), url('../imagenes/nube1.png'),
+        url('../imagenes/nube2.png'), url('../imagenes/nube3.png'), url('../imagenes/nube1.png');
+    background-size: 250px, 130px, 190px, 250px, 130px, 190px;
+    background-position: 
+        200px 55%, 1100px 10%, 2000px 85%,
+        3000px 55%, 3900px 10%, 4800px 85%;
+    animation: viento3 45s linear infinite;
+}
+@keyframes viento3 {
+    from { transform: translateX(-2800px); }
+    to { transform: translateX(0); }
+}
+
+/* NUBES CAPA 4: Bucle de 3200px - Rellenando los huecos restantes */
+body::after {
+    background-image: 
+        url('../imagenes/nube1.png'), url('../imagenes/nube2.png'), url('../imagenes/nube3.png'),
+        url('../imagenes/nube1.png'), url('../imagenes/nube2.png'), url('../imagenes/nube3.png');
+    background-size: 240px, 320px, 160px, 240px, 320px, 160px;
+    background-position: 
+        800px 45%, 1900px 80%, 2700px 30%,
+        4000px 45%, 5100px 80%, 5900px 30%;
+    animation: viento4 70s linear infinite;
+}
+@keyframes viento4 {
+    from { transform: translateX(-3200px); }
+    to { transform: translateX(0); }
+}
+
+/* ==========================================================================
+   3. VARIABLES Y ESTRUCTURAS GLOBALES
+   ========================================================================== */
+
+/* PALETA DE COLORES */
+:root {
+    --amarillo: #FFD90F;
+    --rosa: #E84B89;
+    --celeste: #72C6EF;
+    --negro: #000000;
+}
+
+/* CAJA PRINCIPAL DE CADA SECCIÓN */
+.seccion-pantalla {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* HEADER SECUNDARIO: Franja blanca con logo chico en subpáginas */
+.header-superior-archivo {
+    background-color: var(--blanco);
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px !important;
+    width: 100%;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* ==========================================================================
+   4. ESTILOS DE BOTONES
+   ========================================================================== */
+
+/* BOTÓN AMARILLO (Base) */
+.btn-amarillo {
+    display: inline-block;
+    background-color: var(--amarillo);
+    color: var(--negro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 16px 42px !important;
+    border: 3px solid var(--negro);
+    text-transform: uppercase;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--negro);
+}
+
+/* BOTÓN AMARILLO (Hover) */
+.btn-amarillo:hover {
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 7px 7px 0px var(--negro);
+}
+
+/* BOTÓN AMARILLO (Click activo) */
+.btn-amarillo:active {
+    transform: scale(0.98) translateY(0);
+    box-shadow: 2px 2px 0px var(--negro);
+}
+
+/* BOTÓN GRANDE (Modificador) */
+.btn-grande-seccion {
+    padding: 18px 48px !important;
+    font-size: 22px;
+}
+
+/* ==========================================================================
+   5. SECCIÓN 1: HOME - PORTADA Y NAVEGACIÓN
+   ========================================================================== */
+
+/* CONTENEDOR HERO: Fondo principal de la portada */
+.fondo-completo {
+    background-size: cover;
+    background-position: center top;
+}
+
+/* BARRA DE NAVEGACIÓN AMARILLA */
+.main-header {
+    background-color: var(--amarillo);
+    border-top: none;
+    border-bottom: 3px solid var(--negro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px !important;
+    position: relative;
+    width: 100%;
+}
+
+/* BOTÓN LOG IN */
+.btn-login {
+    background-color: var(--amarillo);
+    color: var(--negro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 26px !important;
+    border: 3px solid var(--negro);
+    font-size: 16px;
+    position: absolute;
+    right: 40px;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0px var(--negro);
+}
+
+/* BOTÓN LOG IN (Hover) */
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 0px var(--negro);
+}
+
+/* LINKS DE NAVEGACIÓN */
+.main-header nav a {
+    text-decoration: none;
+    color: var(--negro);
+    font-weight: bold;
+    margin: 0 60px !important;
+    font-size: 22px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+/* LINKS DE NAVEGACIÓN (Hover) */
+.main-header nav a:hover {
+    transform: translateY(-2px);
+}
+
+/* ÍCONO DE ROSQUILLA */
+.nav-icon {
+    width: 28px;
+    margin-left: 0px !important;
+    transition: transform 0.4s ease;
+}
+
+/* ÍCONO DE ROSQUILLA (Hover al pasar por el link) */
+.main-header nav a:hover .nav-icon {
+    transform: rotate(180deg);
+}
+
+/* ZONA DE LA PORTADA */
+.hero {
+    position: relative;
+    flex: 1;
+    width: 100%;
+}
+
+/* CENTRADOR DE LA PORTADA */
+.hero-content {
+    position: relative;
+    max-width: 1366px;
+    margin: 0 auto !important;
+    height: 100%;
+}
+
+/* IMAGEN DE LA FAMILIA (Portada) */
+.hero-familia {
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    height: 80%;
+    max-height: 500px;
+    z-index: 2;
+    object-fit: contain;
+}
+
+/* LOGO THE SIMPSONS */
+.hero-logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    max-width: 85%;
+    z-index: 1;
+}
+
+/* BOTÓN EXPLORAR */
+.btn-explorar {
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+    z-index: 3;
+}
+
+/* ==========================================================================
+   6. SECCIÓN 2: HOME - MEJORES DE LA SEMANA
+   ========================================================================== */
+
+/* FONDO SECCIÓN 2 (Transparente, sin fondo2.png) */
+.mejores-semana {
+    background-color: transparent; 
+    text-align: center;
+    padding: 40px 20px !important;
+    border-bottom: 3px solid var(--negro);
+    display: flex; /* Activamos flexbox para que funcionen el gap y el centrado */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+/* TÍTULO DE LA SECCIÓN (Achicado a 17px) */
+.titulo-seccion {
+    text-transform: uppercase;
+    font-size: 35px; 
+    margin-bottom: 5px !important;
+}
+
+/* GRILLA CONTENEDORA DE TARJETAS (Ajustada para 5 en línea) */
+.grilla-personajes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; /* OBLIGA a que las tarjetas se mantengan en una sola fila horizontal */
+    gap: 25px; /* Reducimos la separación (antes 70px) para que entren las 5 */
+    width: 100%;
+    max-width: 1300px; /* Límite de ancho para que no se estiren al infinito */
+    margin: 0 auto;
+}
+
+/* TARJETA ROSA (Marco de cada personaje) */
+.tarjeta-rosa {
+    background-color: var(--rosa);
+    border: 4px solid var(--negro);
+    width: 220px; /* Reducimos el ancho (antes 260px) para hacerle lugar a los 2 nuevos */
+    height: 290px; /* Reducimos el alto proporcionalmente (antes 330px) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px !important; /* Un poco menos de padding para que la foto aproveche el espacio */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    flex-shrink: 1; /* Permite que las cajas se achiquen un poquito solas si la pantalla del usuario es muy pequeña */
+}
+
+/* IMAGEN DEL PERSONAJE (Dentro de la tarjeta) */
+.tarjeta-rosa img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* TARJETA ROSA (Hover - Inclinación) */
+.tarjeta-rosa:hover {
+    transform: scale(1.12) translateY(-10px) rotate(-2deg);
+    box-shadow: 8px 8px 0px var(--negro);
+}
+
+/* IMAGEN DEL PERSONAJE (Hover - Zoom) */
+.tarjeta-rosa:hover img {
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   7. SECCIÓN 3: HOME - COMUNIDAD Y FOOTER
+   ========================================================================== */
+
+/* CAJA PRINCIPAL DE COMUNIDAD */
+.seccion-comunidad-completa {
+    background-color: var(--rosa);
+    border-bottom: 3px solid var(--negro);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* Necesario para que el botón flotante se agarre de aquí */
+}
+
+/* ÁREA DE CONTENIDO DEL BANNER */
+.banner-comunidad {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 80px !important;
+    color: white;
+}
+
+/* IMAGEN HOMERO ARBUSTO */
+.homero-izq {
+    height: 280px; /* Reducido de 380px para que el texto se centre mejor */
+    max-height: 45vh;
+    transition: transform 0.3s ease;
+}
+
+/* IMAGEN HOMERO (Hover) */
+.banner-comunidad:hover .homero-izq {
+    transform: scale(1.04);
+}
+
+/* CAJA DE TEXTO CENTRAL BANNER */
+.texto-comunidad {
+    text-align: center;
+    max-width: 650px; /* Ensanchado un poco para que entre bien el texto nuevo */
+}
+
+/* TÍTULO DEL BANNER */
+.texto-comunidad h2 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px !important;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* PÁRRAFO DEL BANNER */
+.texto-comunidad p {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px; /* Un pelín más chico para que el texto nuevo respire bien */
+    line-height: 1.5;
+}
+
+/* COLUMNA DERECHA (Bart y botón) */
+.accion-comunidad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* IMAGEN BART ACOSTADO */
+.homero-der {
+    height: 150px;
+    margin-bottom: -20px !important;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+/* IMAGEN BART (Hover) */
+.accion-comunidad:hover .homero-der {
+    transform: translateY(-8px);
+}
+
+/* =========================================
+   NUEVO FOOTER MODERNO Y BOTÓN SUBIR
+   ========================================= */
+
+/* CONTENEDOR PRINCIPAL DEL FOOTER (Oscuro) */
+.footer-moderno {
+    background-color: #1A1A1A; /* Gris muy oscuro, elegante */
+    color: white;
+    padding: 50px 40px 20px !important;
+    position: relative;
+    border-top: 5px solid var(--amarillo); /* Toque temático */
+    font-family: 'Arial', sans-serif;
+}
+
+/* CAJA CENTRAL DEL FOOTER: Organiza las columnas en fila */
+.footer-contenido {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Elástico al hacer zoom */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto !important;
+    padding-bottom: 30px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* CADA COLUMNA DEL FOOTER */
+.footer-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+}
+
+/* LOGO DENTRO DEL FOOTER */
+.footer-logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+/* TÍTULOS EN EL FOOTER (Ej: NAVEGACIÓN) */
+.footer-columna h4 {
+    font-family: 'SimpsonFont', sans-serif;
+    color: var(--amarillo);
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 5px !important;
+}
+
+/* PÁRRAFOS Y ENLACES EN EL FOOTER */
+.footer-columna p, .footer-columna a {
+    font-size: 15px;
+    color: #CCCCCC;
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* ENLACES DEL FOOTER (Hover) */
+.footer-columna a:hover {
+    color: var(--amarillo);
+    transform: translateX(5px); /* Pequeño empujón a la derecha */
+}
+
+/* ZONA DE COPYRIGHT (Base del Footer) */
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px !important;
+    font-size: 13px;
+    color: #888888;
+}
+
+/* BOTÓN VOLVER ARRIBA (Flotante) */
+.btn-subir {
+    position: absolute;
+    top: -30px; /* Rompe la caja para subirse un poco al área rosa de arriba */
+    right: 50px;
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px -4px 0px rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    text-decoration: none;
+    color: var(--negro);
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* BOTÓN VOLVER ARRIBA (Hover) */
+.btn-subir:hover {
+    transform: translateY(-8px);
+    background-color: var(--rosa);
+    color: white;
+    box-shadow: 0px 8px 0px var(--negro);
+}
+
+/* ==========================================================================
+   CARTAS 3D FLIP - LOS MEJORES DE LA SEMANA
+   ========================================================================== */
+
+.mejores-semana-section {
+    width: 95%;
+    max-width: 1400px;
+    margin: 40px auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* TÍTULO LIMPIO SIN CAJA ROSA CON LETRAS NEGRAS */
+.titulo-mejores-negro {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 38px;
+    color: var(--negro);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 10px 0 !important;
+}
+
+.grilla-cartas-3d {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+}
+
+/* CONTENEDOR 3D PERSPECTIVA */
+.carta-3d-container {
+    background-color: transparent;
+    width: 250px; /* Tamaño ajustado para que quepan las 5 parejamente */
+    height: 400px;
+    perspective: 1000px;
+}
+
+.carta-3d-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.carta-3d-container:hover .carta-3d-inner {
+    transform: rotateY(180deg);
+}
+
+.carta-3d-frente, 
+.carta-3d-reverso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 4px solid var(--negro);
+    box-shadow: 6px 6px 0px var(--negro);
+    padding: 20px !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* FRENTE */
+.carta-3d-frente {
+    background-color: var(--amarillo);
+}
+
+.badge-semana {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 10px !important;
+    border: 2px solid var(--negro);
+    text-transform: uppercase;
+}
+
+.foto-carta-frente {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-carta-frente img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.15));
+}
+
+.nombre-carta-frente {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    text-transform: uppercase;
+    margin: 5px 0 !important;
+}
+
+.pista-girar {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+/* REVERSO */
+.carta-3d-reverso {
+    background-color: white;
+    transform: rotateY(180deg);
+    align-items: flex-start;
+    text-align: left;
+}
+
+.badge-rol-carta {
+    background-color: var(--amarillo);
+    color: var(--negro);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 8px !important;
+    border: 2px solid var(--negro);
+    text-transform: uppercase;
+}
+
+.nombre-carta-reverso {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    margin: 4px 0 !important;
+}
+
+.frase-carta {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 16px;
+    color: var(--rosa);
+    font-style: italic;
+    margin-bottom: 4px !important;
+}
+
+.desc-carta {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--negro);
+}
+
+.mini-episodios-carta {
+    width: 100%;
+    border-top: 2px solid var(--negro);
+    padding-top: 8px !important;
+    margin-top: 4px !important;
+}
+
+.mini-episodios-carta h5 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 13px;
+    color: var(--negro);
+    margin-bottom: 4px !important;
+}
+
+.mini-episodios-carta ul {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.mini-episodios-carta li {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    padding: 2px 0 !important;
+}
+
+/* ==========================================================================
+   8. ESTRUCTURAS REUTILIZABLES (Para subpáginas)
+   ========================================================================== */
+
+/* HEADER REDUCIDO EN SUBPÁGINAS */
+.header-superior-archivo {
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px !important;
+    width: 100%;
+    border-top: none !important;
+    margin-top: 0 !important;
+}
+
+/* LOGO REDUCIDO */
+.logo-pequeno {
+    width: 200px;
+    transition: transform 0.2s;
+}
+
+/* LOGO REDUCIDO (Hover) */
+.logo-pequeno:hover {
+    transform: scale(1.05);
+}
+
+/* AVATAR DE INGRESO SUPERIOR */
+.icono-login {
+    width: 85px;
+    border: 2px solid var(--negro);
+    border-radius: 50%;
+    background-color: #DDF0FC;
+    transition: transform 0.2s;
+}
+
+/* AVATAR DE INGRESO (Hover) */
+.icono-login:hover {
+    transform: scale(1.05);
+}
+
+/* TÍTULO DE BARRA ROSA (Identificador de sección) */
+.titulo-rosa {
+    background-color: var(--rosa);
+    color: white;
+    text-align: center;
+    padding: 25px !important;
+    border-bottom: 2px solid var(--negro);
+    font-size: 26px;
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   9. PÁGINA: ARCHIVO SPRINGFIELD (Episodios y TV)
+   ========================================================================== */
+
+/* CONTENEDOR ARCHIVO (Dos columnas) */
+.archivo-main {
+    background-size: cover;
+    background-position: center;
+    padding: 40px !important; 
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas bajen si la pantalla se achica */
+    justify-content: center;
+    gap: 40px;
+    min-height: 680px;
+    border-bottom: 3px solid var(--negro);
+    width: 100%;
+}
+
+/* COLUMNA IZQUIERDA (Selector y lista) */
+.col-episodios {
+    flex: 1;
+    min-width: 320px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* CONTENEDOR SELECT TEMPORADAS */
+.contenedor-temporadas {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 15px !important;
+    z-index: 10;
+}
+
+/* ENVOLTORIO SELECT PERSONALIZADO */
+.custom-select-wrapper {
+    position: relative;
+    width: 320px;
+    user-select: none;
+}
+
+/* BOTÓN DEL SELECTOR (Temporada X) */
+.custom-select-trigger {
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    padding: 12px 18px !important;
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 18px; /* Tamaño unificado con el Home */
+    font-weight: bold;
+    color: var(--negro);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.custom-select-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0px var(--negro);
+}
+
+/* FLECHITA DEL SELECT */
+.flecha-select {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.custom-select-trigger.open .flecha-select {
+    transform: rotate(180deg);
+}
+
+/* MENÚ DESPLEGABLE TEMPORADAS */
+.custom-options-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    border-top: none;
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.custom-options-menu.show {
+    display: block;
+}
+
+/* OPCIÓN INDIVIDUAL DEL MENÚ */
+.custom-option {
+    padding: 12px 18px !important;
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 16px; 
+    color: var(--negro);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-option:hover {
+    background-color: var(--rosa);
+    color: white;
+}
+
+.custom-option.selected {
+    background-color: #e5bf0d;
+    font-weight: bold;
+}
+
+/* SCROLLBAR SELECT */
+.custom-options-menu::-webkit-scrollbar { width: 10px; }
+.custom-options-menu::-webkit-scrollbar-track { background: var(--amarillo); border-left: 2px solid var(--negro); }
+.custom-options-menu::-webkit-scrollbar-thumb { background-color: var(--rosa); border: 2px solid var(--negro); }
+
+/* PUNTO ROJO DE GRABACIÓN (LIVE) */
+.punto-live {
+    width: 16px;
+    height: 16px;
+    background-color: #FF0000;
+    border: 2px solid var(--negro);
+    border-radius: 50%;
+    margin-left: 14px !important;
+    display: inline-block;
+    animation: parpadeo-live 1.2s infinite ease-in-out;
+}
+
+@keyframes parpadeo-live {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* LISTA DE EPISODIOS CON SCROLL */
+.lista-episodios-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 10px !important;
+}
+
+.lista-episodios-scroll::-webkit-scrollbar { width: 10px; }
+.lista-episodios-scroll::-webkit-scrollbar-track { background: var(--amarillo); border: 2px solid var(--negro); }
+.lista-episodios-scroll::-webkit-scrollbar-thumb { background-color: var(--rosa); border: 2px solid var(--negro); }
+
+/* TARJETA INDIVIDUAL DE EPISODIO */
+.tarjeta-episodio {
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    display: flex;
+    align-items: center; /* Mantiene la miniatura y el texto centrados */
+    padding: 15px !important; 
+    gap: 15px; 
+    min-height: 140px; /* Altura mínima base */
+    height: auto !important; /* LA MAGIA: Obliga a la caja a estirarse si hay mucho texto */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* MINIATURA DEL EPISODIO */
+.tarjeta-episodio img {
+    width: 140px; 
+    height: 100px; 
+    object-fit: cover;
+    border: 2px solid var(--negro);
+    flex-shrink: 0; /* FUNDAMENTAL: Evita que la foto se aplaste si el texto es muy largo */
+}
+
+/* CAJA DE TEXTO DEL EPISODIO */
+.info-episodio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; 
+    flex: 1; /* Hace que el texto use el ancho disponible */
+    height: auto; /* Permite que el texto empuje la caja hacia abajo */
+}
+
+/* ETIQUETA CAPÍTULO (Ej: T1 E1) */
+.badge-capitulo {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 16px; /* Achicado y sutil */
+    color: var(--rosa);
+    -webkit-text-stroke: 0.5px var(--negro);
+    text-transform: uppercase;
+}
+
+/* TÍTULO DEL CAPÍTULO */
+.titulo-episodio {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 18px; /* Título balanceado */
+    color: var(--negro);
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+/* DURACIÓN DEL CAPÍTULO */
+.titulo-episodio small {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px; 
+    color: #444;
+    display: inline-block;
+    margin-top: 3px !important;
+}
+
+/* SINOPSIS DEL EPISODIO */
+.desc-episodio {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px; 
+    line-height: 1.4;
+    color: var(--negro);
+    margin-top: 4px !important;
+}
+
+/* COLUMNA DERECHA TV */
+.col-tv {
+    flex: 1.5;
+    min-width: 400px; 
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CAJA CONTENEDORA DE LA TV */
+.contenedor-tv {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: 10px !important;
+    transition: opacity 0.2s ease;
+}
+
+.contenedor-tv.cambio-canal { opacity: 0.3; }
+
+/* IMAGEN MARCO DEL TELEVISOR */
+.tv-marco {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    display: block;
+    pointer-events: none;
+}
+
+/* VIDEO IFRAME YOUTUBE */
+.tv-pantalla-iframe {
+    position: absolute;
+    top: 9%;
+    left: 8%;
+    width: 75%;
+    height: 76%;
+    border-radius: 40px;
+    z-index: 1;
+    background-color: black;
+}
+
+/* TEXTO DE ESTADO INFERIOR (Reproduciendo...) */
+.texto-tv {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 15px; 
+    text-align: center;
+    margin-top: 10px !important;
+    max-width: 95%;
+    color: var(--negro);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   10. PÁGINA: HABITANTES (ESTILO ARCADE)
+   ========================================================================== */
+
+/* CONTENEDOR PRINCIPAL CENTRADO */
+.habitantes-arcade {
+    padding: 30px 0 !important; 
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-height: 700px;
+    width: 95%;
+    max-width: 1300px;
+    margin: 0 auto !important;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+}
+
+/* ENVOLTORIO CON ESPACIO EXTERNO PARA LAS FLECHAS */
+.envoltorio-tira {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 55px !important;
+}
+
+/* TIRA DE SELECCIÓN HORIZONTAL */
+.tira-seleccion {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px 25px 5px !important; 
+    width: 100%;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+/* SCROLLBAR HORIZONTAL */
+.tira-seleccion::-webkit-scrollbar { height: 12px; }
+.tira-seleccion::-webkit-scrollbar-track { background: var(--amarillo); border: 2px solid var(--negro); }
+.tira-seleccion::-webkit-scrollbar-thumb { background-color: var(--rosa); border: 2px solid var(--negro); }
+
+/* BOTONES DE SCROLL (POR FUERA DE LA TIRA) */
+.btn-scroll-glass {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 3px solid var(--negro);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--negro);
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--negro);
+    transition: all 0.2s ease;
+}
+
+.btn-scroll-glass:hover {
+    background: var(--rosa);
+    color: white;
+    transform: translateY(-60%) scale(1.1);
+}
+
+.btn-scroll-glass.izq { left: 0px; }
+.btn-scroll-glass.der { right: 0px; }
+
+/* MINIATURAS (Cuadros de selección) */
+.thumb-arcade {
+    width: 120px;
+    height: 120px;
+    background-color: white; 
+    border: 3px solid var(--negro);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 8px !important;
+}
+
+.thumb-arcade img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.thumb-arcade:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 0px var(--negro);
+    background-color: #f4f4f4;
+}
+
+.thumb-arcade.activa {
+    background-color: var(--rosa);
+    transform: translateY(-6px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+/* VISOR CONTENEDOR AMARILLO ABAJO */
+.visor-personaje {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 8px 8px 0px var(--negro);
+    padding: 40px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* BLOQUE SUPERIOR DEL VISOR (Info + Foto) */
+.visor-contenido-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+.visor-info {
+    flex: 1.2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.badge-rol-arcade {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 6px 14px !important;
+    border: 2px solid var(--negro);
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.nombre-arcade {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 45px;
+    color: var(--negro);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 5px 0 !important;
+}
+
+.frase-arcade {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: #444;
+    font-style: italic;
+}
+
+.desc-arcade {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--negro);
+}
+
+.visor-foto {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visor-foto img {
+    max-height: 350px;
+    width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.15));
+}
+
+/* BLOQUE INFERIOR DE EPISODIOS POPULARES (HASTA 5 TARJETAS FLEXIBLES) */
+.bloque-episodios-populares {
+    width: 100%;
+    border-top: 3px solid var(--negro);
+    padding-top: 25px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.titulo-episodios-bloque {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.grilla-cards-episodios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between; /* Distribuye hasta 5 elementos parejamente */
+    width: 100%;
+}
+
+/* TARJETA INDIVIDUAL DE EPISODIO DESTACADO */
+.card-ep-destacado {
+    background-color: white;
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px; /* Permite que hasta 5 tarjetas crezcan/achiquen en proporción pareja */
+    max-width: 230px;
+    min-width: 160px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-ep-destacado:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+.foto-ep-box {
+    width: 100%;
+    height: 110px;
+    background-color: #fff;
+    border-bottom: 2px solid var(--negro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-ep-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-ep-box {
+    padding: 10px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.badge-ep-tag {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 13px;
+    color: var(--rosa);
+    font-weight: bold;
+}
+
+.titulo-ep-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--negro);
+    line-height: 1.2;
+}
+
+.sin-episodios-msg {
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: #555;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   11. VENTANA MODAL EMERGENTE (Pop-up)
+   ========================================================================== */
+
+/* FONDO OSCURO DEL MODAL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* ESTADO ACTIVO DEL MODAL */
+.modal-overlay.activo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* CAJA CENTRAL DEL MODAL */
+.modal-caja {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 10px 10px 0px var(--negro);
+    width: 90%;
+    max-width: 650px;
+    padding: 35px !important;
+    position: relative;
+    transform: scale(0.8) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ANIMACIÓN DE ENTRADA CAJA MODAL */
+.modal-overlay.activo .modal-caja {
+    transform: scale(1) translateY(0);
+}
+
+/* BOTÓN DE CERRAR (X) */
+.btn-cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--rosa);
+    color: white;
+    border: 3px solid var(--negro);
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* BOTÓN CERRAR (Hover) */
+.btn-cerrar-modal:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 3px 0px var(--negro);
+}
+
+/* CONTENIDO INTERNO DEL MODAL */
+.modal-body {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* ÁREA DE IMAGEN DEL MODAL */
+.modal-foto-box {
+    background-color: transparent;
+    border: none;
+    width: 200px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    flex-shrink: 0;
+}
+
+/* FOTO DEL PERSONAJE EN EL MODAL */
+.modal-foto-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* COLUMNA DE TEXTOS DEL MODAL */
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ETIQUETA ROL MODAL */
+.modal-badge {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 4px 12px !important;
+    border: 2px solid var(--negro);
+    display: inline-block;
+    width: fit-content;
+}
+
+/* TÍTULO NOMBRE DEL MODAL */
+.modal-info h3 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 32px;
+    color: var(--negro);
+    text-transform: uppercase;
+}
+
+/* FRASE CÉLEBRE DEL MODAL */
+.modal-frase {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    color: #444;
+    font-style: italic;
+}
+
+/* PÁRRAFO DE DESCRIPCIÓN DEL MODAL */
+.modal-desc {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--negro);
+}
+
+/* ==========================================================================
+   12. PÁGINA: COMUNIDAD
+   ========================================================================== */
+
+/* CAJA PRINCIPAL COMUNIDAD */
+.comunidad-main {
+    background-size: cover;
+    background-position: center;
+    padding: 70px 40px !important;
+    border-bottom: 2px solid var(--negro);
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* GRILLA DE TARJETAS */
+.grilla-comunidad {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    max-width: 1250px;
+    width: 100%;
+}
+
+/* TARJETA INDIVIDUAL COMUNIDAD */
+.tarjeta-comunidad {
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    padding: 35px !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* TARJETA COMUNIDAD (Hover) */
+.tarjeta-comunidad:hover {
+    transform: translateY(-8px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+/* TÍTULO DE LA TARJETA */
+.tarjeta-comunidad h3 {
+    font-size: 30px;
+    margin-bottom: 20px !important;
+    text-transform: uppercase;
+}
+
+/* IMAGEN ILUSTRATIVA DE LA TARJETA */
+.tarjeta-comunidad img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border: 2px solid var(--negro);
+    margin-bottom: 20px !important;
+}
+
+/* TEXTO EXPLICATIVO DE LA TARJETA */
+.tarjeta-comunidad p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   13. PÁGINA: INGRESO / REGISTRO
+   ========================================================================== */
+
+/* CAJA PRINCIPAL INGRESO */
+.ingreso-main {
+    background-image: url('../imagenes/fondoingreso.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 700px;
+    border-bottom: 2px solid var(--negro);
+    display: flex;
+    align-items: center;
+    padding-left: 10% !important;
+    width: 100%;
+}
+
+/* FORMULARIO DE LOGIN */
+.caja-login {
+    background-color: var(--amarillo);
+    border: 3px solid var(--negro);
+    width: 420px;
+    padding: 45px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* FOTO DE PERFIL / AVATAR */
+.avatar-login {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--negro);
+    object-fit: cover;
+    background-color: #DDF0FC;
+}
+
+/* CAMPOS DE TEXTO (Inputs) */
+.input-login {
+    width: 100%;
+    padding: 16px !important;
+    border: 3px solid var(--negro);
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* ESTADO ACTIVO DEL CAMPO (Focus) */
+.input-login:focus {
+    outline: none;
+    box-shadow: 4px 4px 0px var(--negro);
+}
+
+/* BOTÓN DE "INGRESAR" */
+.btn-blanco {
+    background-color: white;
+    color: var(--negro);
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    padding: 12px 35px !important;
+    border: 3px solid var(--negro);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* BOTÓN INGRESAR (Hover) */
+.btn-blanco:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 4px 4px 0px var(--negro);
+}
+
+/* ==========================================================================
+   11. PÁGINA: SPRINGFIELD (LUGARES Y SOUNDBOARD)
+   ========================================================================== */
+
+.springfield-main-container {
+    width: 95%;
+    max-width: 1300px;
+    margin: 40px auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.subtitulo-springfield {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 36px;
+    color: var(--negro);
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px !important;
+}
+
+/* --- GRILLA DE LUGARES --- */
+.grilla-lugares {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-lugar {
+    background-color: white;
+    border: 4px solid var(--negro);
+    box-shadow: 8px 8px 0px var(--negro);
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-lugar:hover {
+    transform: translateY(-6px);
+    box-shadow: 10px 10px 0px var(--negro);
+}
+
+.foto-lugar-box {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: var(--amarillo);
+    border-bottom: 3px solid var(--negro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-lugar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-direccion {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 10px !important;
+    border: 2px solid var(--negro);
+    text-transform: uppercase;
+}
+
+.info-lugar-box {
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-lugar-box h4 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    line-height: 1.1;
+}
+
+.desc-lugar {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* --- SOUNDBOARD INTERACTIVO --- */
+.bloque-soundboard-springfield {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 10px 10px 0px var(--negro);
+    padding: 40px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.pistas-soundboard {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--negro);
+    text-align: center;
+}
+
+.grilla-soundboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* BOTONES RETRO SOUNDBOARD */
+.btn-sound-arcade {
+    background-color: white;
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    padding: 15px 25px !important;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    width: 220px;
+    transition: all 0.15s ease;
+}
+
+.btn-sound-arcade:hover {
+    background-color: var(--rosa);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+.btn-sound-arcade:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px var(--negro);
+}
+
+.icono-sound {
+    font-size: 28px;
+}
+
+.texto-sound {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.texto-sound strong {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.texto-sound small {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   12. PÁGINA: COMUNIDAD (FORO Y FEED DE FANS)
+   ========================================================================== */
+
+.comunidad-main-container {
+    width: 95%;
+    max-width: 1300px;
+    margin: 40px auto !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+/* COLUMNA PRINCIPAL (FEED Y FORMULARIO) */
+.columna-feed-comunidad {
+    flex: 2;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* CARD FORMULARIO DE PUBLICACIÓN */
+.card-crear-publicacion {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 8px 8px 0px var(--negro);
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-crear-publicacion h3 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 28px;
+    color: var(--negro);
+    text-transform: uppercase;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px !important;
+}
+
+.grupo-input label {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--negro);
+}
+
+.grupo-input input,
+.grupo-input select,
+.grupo-input textarea {
+    border: 3px solid var(--negro);
+    padding: 10px 14px !important;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    background-color: white;
+    outline: none;
+}
+
+.grupo-input input:focus,
+.grupo-input select:focus,
+.grupo-input textarea:focus {
+    border-color: var(--rosa);
+    box-shadow: 2px 2px 0px var(--negro);
+}
+
+.btn-publicar-arcade {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    padding: 12px 25px !important;
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    align-self: flex-start;
+}
+
+.btn-publicar-arcade:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+.btn-publicar-arcade:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px var(--negro);
+}
+
+/* FEED DE COMENTARIOS */
+.subtitulo-feed {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 26px;
+    color: var(--negro);
+    margin-bottom: 15px !important;
+}
+
+.lista-comentarios {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-comentario {
+    background-color: white;
+    border: 3px solid var(--negro);
+    box-shadow: 6px 6px 0px var(--negro);
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.header-comentario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px !important;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge-personaje-fav {
+    background-color: var(--amarillo);
+    color: var(--negro);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 3px 8px !important;
+    border: 2px solid var(--negro);
+    text-transform: uppercase;
+}
+
+.fecha-comentario {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: #777;
+}
+
+.texto-comentario {
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--negro);
+}
+
+.footer-comentario {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-like-rosquilla {
+    background: none;
+    border: 2px solid var(--negro);
+    padding: 5px 12px !important;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 0px var(--negro);
+    transition: all 0.15s ease;
+}
+
+.btn-like-rosquilla:hover {
+    background-color: var(--amarillo);
+}
+
+/* COLUMNA SIDEBAR (ENCUESTA Y REGLAS) */
+.columna-sidebar-comunidad {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card-encuesta-semana {
+    background-color: white;
+    border: 4px solid var(--negro);
+    box-shadow: 8px 8px 0px var(--negro);
+    padding: 25px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.badge-encuesta {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 10px !important;
+    border: 2px solid var(--negro);
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.card-encuesta-semana h4 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    line-height: 1.2;
+}
+
+.opciones-encuesta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-opcion-voto {
+    background-color: #f5f5f5;
+    border: 2px solid var(--negro);
+    padding: 10px 14px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-opcion-voto:hover {
+    background-color: var(--amarillo);
+}
+
+.btn-opcion-voto.votado {
+    background-color: var(--rosa);
+    color: white;
+}
+
+.total-votos-txt {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    font-style: italic;
+}
+
+.card-reglas-comunidad {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 6px 6px 0px var(--negro);
+    padding: 20px !important;
+}
+
+.card-reglas-comunidad h4 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    color: var(--negro);
+    margin-bottom: 10px !important;
+}
+
+.card-reglas-comunidad ul {
+    padding-left: 20px !important;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--negro);
+}
+
+/* ==========================================================================
+   13. PÁGINA: REGISTRO Y LOGIN (ESTILO ARCADE)
+   ========================================================================== */
+
+.registro-main-container {
+    width: 95%;
+    max-width: 600px;
+    margin: 40px auto !important;
+    display: flex;
+    justify-content: center;
+}
+
+.card-auth-arcade {
+    background-color: var(--amarillo);
+    border: 4px solid var(--negro);
+    box-shadow: 10px 10px 0px var(--negro);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* PESTAÑAS SUPERIORES */
+.tabs-auth {
+    display: flex;
+    width: 100%;
+    border-bottom: 4px solid var(--negro);
+}
+
+.btn-tab-auth {
+    flex: 1;
+    background-color: #f0f0f0;
+    color: var(--negro);
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 20px;
+    padding: 15px !important;
+    border: none;
+    border-right: 2px solid var(--negro);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-tab-auth:last-child {
+    border-right: none;
+}
+
+.btn-tab-auth.activo {
+    background-color: var(--rosa);
+    color: white;
+}
+
+/* CONTENIDO DE LOS FORMULARIOS */
+.form-auth-content {
+    display: none;
+    padding: 35px !important;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-auth-content.activo {
+    display: flex;
+}
+
+.header-form-auth h3 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 28px;
+    color: var(--negro);
+    margin-bottom: 5px !important;
+}
+
+.header-form-auth p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* OPCIONES EXTRA */
+.opciones-login-extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    margin: 5px 0 10px 0 !important;
+}
+
+.check-recordar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.link-olvido {
+    color: var(--negro);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.link-olvido:hover {
+    color: var(--rosa);
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-submit-auth {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 22px;
+    padding: 14px !important;
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-top: 10px !important;
+}
+
+.btn-submit-auth:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--negro);
+    background-color: #d1307e;
+}
+
+.btn-submit-auth:active {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 0px var(--negro);
+}
+
+/* ==========================================================================
+   PANTALLA DE BLOQUEO / CONTENIDO EXCLUSIVO
+   ========================================================================== */
+
+/* DESENFOCAR EL CONTENIDO TRASERO CUANDO NO HAY SESIÓN */
+.contenido-desenfocable.bloqueado {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* OVERLAY FLOTANTE QUE CUBRE TODA LA PANTALLA */
+.overlay-bloqueo-arcade {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* SE ACTIVA CUANDO EL SCRIPT DETECTA QUE NO HAY SESIÓN */
+.overlay-bloqueo-arcade.activo {
+    display: flex !important;
+}
+
+/* CAJA AMARILLA RETRO CENTRADA */
+.card-bloqueo-caja {
+    background-color: var(--amarillo);
+    border: 5px solid var(--negro);
+    box-shadow: 12px 12px 0px var(--negro);
+    padding: 35px !important;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.icono-candado-grande {
+    font-size: 45px;
+}
+
+.badge-bloqueo {
+    background-color: var(--rosa);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 12px !important;
+    border: 2px solid var(--negro);
+    text-transform: uppercase;
+}
+
+.card-bloqueo-caja h2 {
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 30px;
+    color: var(--negro);
+    line-height: 1.1;
+    margin: 0 !important;
+}
+
+.card-bloqueo-caja p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--negro);
+    line-height: 1.4;
+    margin: 0 !important;
+}
+
+.acciones-bloqueo {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px !important;
+}
+
+.btn-bloqueo-login, 
+.btn-bloqueo-reg {
+    flex: 1;
+    padding: 12px !important;
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 18px;
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-bloqueo-login {
+    background-color: white;
+    color: var(--negro);
+}
+
+.btn-bloqueo-reg {
+    background-color: var(--rosa);
+    color: white;
+}
+
+.btn-bloqueo-login:hover, 
+.btn-bloqueo-reg:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px var(--negro);
+}
+
+/* ==========================================================================
+   ESTILO Y ANIMACIÓN HOVER PARA EL BOTÓN DE CERRAR SESIÓN (FOTO DE HOMERO)
+   ========================================================================== */
+
+/* CONTENEDOR BASE DEL BOTÓN EN EL HEADER SUPERIOR */
+#btn-auth-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+/* CUANDO LA SESIÓN ESTÁ ACTIVA (CLASE QUE AGREGA JS) */
+#btn-auth-header.sesion-activa {
+    background-color: var(--rosa);
+    border: 3px solid var(--negro);
+    box-shadow: 4px 4px 0px var(--negro);
+    padding: 6px 14px !important;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* TEXTO / X QUE APARECE AL PASAR EL MOUSE O POR DEFECTO EN SESIÓN ACTIVA */
+#btn-auth-header.sesion-activa::after {
+    content: "SALIR ✖";
+    font-family: 'SimpsonFont', sans-serif;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+/* OCULTAR LA IMAGEN DE HOMERO CUANDO LA SESIÓN ESTÁ ACTIVA Y SE PASA EL RATÓN */
+#btn-auth-header.sesion-activa #img-usuario-header {
+    display: none;
+}
+
+/* EFECTO DE ELEVACIÓN Y SOMBRA AL PASAR EL MOUSE */
+#btn-auth-header.sesion-activa:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px var(--negro);
+    background-color: #be286f; /* Rosa un poco más oscuro */
+}
+
+/* ALINEACIÓN DEL HEADER PRINCIPAL EN EL HOME */
+.main-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* ==========================================================================
+   CENTRADO PERFECTO DEL MENÚ AMARILLO Y BOTÓN A LA DERECHA
+   ========================================================================== */
+
+/* 1. CONTENEDOR PRINCIPAL DEL HEADER (POSICIÓN RELATIVA PARA ANCLAR EL BOTÓN) */
+.main-header {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important; /* Centra los enlaces del nav */
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. BARRA DE NAVEGACIÓN TOTALMENTE CENTRADA */
+.main-header nav,
+#nav-principal {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important; /* Asegura el centrado exacto */
+}
+
+/* 3. BOTÓN DE AUTH (LOG IN / SALIR) ANCLADO A LA DERECHA SIN EMPUJAR EL NAV */
+.main-header #btn-auth-header {
+    position: absolute !important;
+    right: 20px !important; /* Distancia respecto al borde derecho */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-left: 0 !important;
+}
+
+/* EFECTO HOVER MANTENIENDO EL ALINEAMIENTO VERTICAL */
+.main-header #btn-auth-header.sesion-activa:hover {
+    transform: translateY(calc(-50% - 2px)) !important;
+}

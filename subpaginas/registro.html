@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Simpson | Registro e Inicio de Sesión</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Header Superior -->
+    <div class="header-superior-archivo">
+        <a href="../index.html">
+            <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="logo-pequeno">
+        </a>
+        <a href="registro.html">
+            <img src="../imagenes/homero-login.png" alt="Log In" class="icono-login">
+        </a>
+    </div>
+
+    <!-- Navegación Principal -->
+    <header class="main-header">
+        <nav>
+            <a href="../index.html">INICIO <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="tv.html">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="comunidad.html">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+        </nav>
+    </header>
+
+    <!-- Titulo Rosa -->
+    <div class="titulo-rosa">
+        <h2>ACCESO DE FANÁTICOS</h2>
+    </div>
+
+    <main class="registro-main-container">
+
+        <div class="card-auth-arcade">
+            
+            <!-- PESTAÑAS PARA CAMBIAR ENTRE LOGIN Y REGISTRO -->
+            <div class="tabs-auth">
+                <button class="btn-tab-auth activo" id="tab-login" onclick="cambiarModoAuth('login')">INICIAR SESIÓN</button>
+                <button class="btn-tab-auth" id="tab-registro" onclick="cambiarModoAuth('registro')">REGISTRARSE</button>
+            </div>
+
+            <!-- FORMULARIO 1: INICIAR SESIÓN -->
+            <form id="form-login" class="form-auth-content activo" onsubmit="procesarAuth(event, 'login')">
+                <div class="header-form-auth">
+                    <h3>¡BIENVENIDO DE NUEVO! 🍩</h3>
+                    <p>Ingresa tus credenciales para acceder a la comunidad de Springfield.</p>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="login-email">Correo Electrónico o Usuario:</label>
+                    <input type="text" id="login-email" placeholder="Ej: homero_s@duff.com" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="login-pass">Contraseña:</label>
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                </div>
+
+                <div class="opciones-login-extra">
+                    <label class="check-recordar">
+                        <input type="checkbox" id="recordar-sesion"> Recordarme
+                    </label>
+                    <a href="#" class="link-olvido" onclick="alert('Contacta al Administrador del Kwik-E-Mart para recuperar tu clave.')">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn-submit-auth">¡ENTRAR A SPRINGFIELD!</button>
+            </form>
+
+            <!-- FORMULARIO 2: REGISTRO -->
+            <form id="form-registro" class="form-auth-content" onsubmit="procesarAuth(event, 'registro')">
+                <div class="header-form-auth">
+                    <h3>¡SÚMATE AL CLUB DE FANS! 🎷</h3>
+                    <p>Crea tu cuenta de ciudadano honorario en pocos segundos.</p>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="reg-nombre">Nombre de Ciudadano / Apodo:</label>
+                    <input type="text" id="reg-nombre" placeholder="Ej: Bart_Simpson_99" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="reg-email">Correo Electrónico:</label>
+                    <input type="email" id="reg-email" placeholder="tu_correo@ejemplo.com" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="reg-personaje">Personaje Favorito:</label>
+                    <select id="reg-personaje">
+                        <option value="Homer Simpson">Homer Simpson</option>
+                        <option value="Bart Simpson">Bart Simpson</option>
+                        <option value="Lisa Simpson">Lisa Simpson</option>
+                        <option value="Marge Simpson">Marge Simpson</option>
+                        <option value="Ned Flanders">Ned Flanders</option>
+                        <option value="Moe Szyslak">Moe Szyslak</option>
+                        <option value="Sr. Burns">Sr. Burns</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="reg-pass">Crea una Contraseña:</label>
+                    <input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" required minlength="6">
+                </div>
+
+                <div class="opciones-login-extra">
+                    <label class="check-recordar">
+                        <input type="checkbox" required> Acepto las reglas de la comunidad
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit-auth">¡CREAR MI CUENTA!</button>
+            </form>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER MODERNO -->
+    <footer class="footer-moderno">
+        <a href="#" class="btn-subir" title="Volver arriba">↑</a>
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="footer-logo">
+                <p>El archivo definitivo creado por y para verdaderos fanáticos.</p>
+            </div>
+            <div class="footer-columna">
+                <h4>NAVEGACIÓN</h4>
+                <a href="../index.html">Inicio</a>
+                <a href="tv.html">TV</a>
+                <a href="habitantes.html">Habitantes</a>
+                <a href="springfield.html">Springfield</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 - Los Simpson son propiedad de 20th Century Studios.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT PARA ALTERNAR ENTRE PESTAÑAS -->
+    <script>
+    function cambiarModoAuth(modo) {
+        const formLogin = document.getElementById('form-login');
+        const formRegistro = document.getElementById('form-registro');
+        const tabLogin = document.getElementById('tab-login');
+        const tabRegistro = document.getElementById('tab-registro');
+
+        if (modo === 'login') {
+            formLogin.classList.add('activo');
+            formRegistro.classList.remove('activo');
+            tabLogin.classList.add('activo');
+            tabRegistro.classList.remove('activo');
+        } else {
+            formRegistro.classList.add('activo');
+            formLogin.classList.remove('activo');
+            tabRegistro.classList.add('activo');
+            tabLogin.classList.remove('activo');
+        }
+    }
+
+    function procesarAuth(event, modo) {
+        event.preventDefault();
+        
+        // Obtener el valor ingresado según el formulario activo
+        const usuarioInput = modo === 'login' ? 
+            document.getElementById('login-email').value : 
+            document.getElementById('reg-nombre').value;
+            
+        // Guardar el nombre/usuario en la memoria del navegador
+        localStorage.setItem('usuario_simpson', usuarioInput || 'Ciudadano_Springfield');
+
+        // Notificación de éxito y redirección a la Comunidad
+        alert(modo === 'login' ? '¡Bienvenido de nuevo a Springfield!' : '¡Registro completado! Ya puedes navegar por las secciones exclusivas.');
+        window.location.href = 'comunidad.html';
+    }
+    </script>
+</body>
+</html>

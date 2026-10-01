@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Simpson | Comunidad</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Header Superior -->
+    <div class="header-superior-archivo">
+        <a href="../index.html">
+            <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="logo-pequeno">
+        </a>
+        <!-- BOTÓN CON FOTO DE HOMERO Y EVENTO DE SESIÓN -->
+        <a href="registro.html" id="btn-auth-header" title="Iniciar Sesión / Cerrar Sesión">
+            <img src="../imagenes/homero-login.png" alt="Usuario" class="icono-login" id="img-usuario-header">
+        </a>
+    </div>
+
+    <!-- Navegación Principal (Sin candados fijos) -->
+    <header class="main-header">
+        <nav id="nav-principal">
+            <a href="tv.html" id="link-tv">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-tv"></a>
+            <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="comunidad.html" id="link-comunidad">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-comunidad"></a>
+        </nav>
+    </header>
+
+    <!-- PANTALLA DE BLOQUEO DE CONTENIDO -->
+    <div id="bloqueo-overlay" class="overlay-bloqueo-arcade">
+        <div class="card-bloqueo-caja">
+            <div class="icono-candado-grande">🔒</div>
+            <span class="badge-bloqueo">CONTENIDO EXCLUSIVO</span>
+            <h2>¡ACCESO RESTRINGIDO!</h2>
+            <p>Debes ser un ciudadano registrado de Springfield para acceder a los debates y participar en la comunidad.</p>
+
+            <div class="acciones-bloqueo">
+                <a href="registro.html" class="btn-bloqueo-login">INICIAR SESIÓN</a>
+                <a href="registro.html" class="btn-bloqueo-reg">REGISTRARSE</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="comunidad-main-container contenido-desenfocable" id="contenido-protegido">
+
+        <!-- =========================================
+             BLOQUE IZQUIERDO: FORMULARIO Y FEED DE COMENTARIOS
+             ========================================= -->
+        <section class="columna-feed-comunidad">
+            
+            <!-- FORMULARIO PARA CREAR PUBLICACIÓN -->
+            <div class="card-crear-publicacion">
+                <h3>¡ÚNETE A LA CHARLA! 🍩</h3>
+                <form id="form-comentario" onsubmit="agregarComentario(event)">
+                    <div class="grupo-input">
+                        <label for="nombre-usuario">Tu Apodo / Nombre:</label>
+                        <input type="text" id="nombre-usuario" placeholder="Ej: Bart_Simpson_99" required>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="personaje-favorito">Personaje Favorito:</label>
+                        <select id="personaje-favorito">
+                            <option value="Homer Simpson">Homer Simpson</option>
+                            <option value="Bart Simpson">Bart Simpson</option>
+                            <option value="Lisa Simpson">Lisa Simpson</option>
+                            <option value="Ned Flanders">Ned Flanders</option>
+                            <option value="Moe Szyslak">Moe Szyslak</option>
+                            <option value="Otro">Otro residente...</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="mensaje-usuario">Tu Opinión o Mensaje:</label>
+                        <textarea id="mensaje-usuario" rows="4" placeholder="Escribe tu teoría, frase favorita o debate sobre algún episodio..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-publicar-arcade">PUBLICAR EN EL MURO</button>
+                </form>
+            </div>
+
+            <!-- FEED / LISTA DE COMENTARIOS -->
+            <div class="contenedor-feed-mensajes">
+                <h3 class="subtitulo-feed">ÚLTIMAS PUBLICACIONES</h3>
+                <div class="lista-comentarios" id="lista-comentarios">
+
+                    <!-- COMENTARIO 1 -->
+                    <div class="card-comentario">
+                        <div class="header-comentario">
+                            <div class="usuario-info">
+                                <span class="badge-personaje-fav">Homer Simpson</span>
+                                <strong>@HomeroFanático</strong>
+                            </div>
+                            <span class="fecha-comentario">Hace 15 min</span>
+                        </div>
+                        <p class="texto-comentario">"Homer contra la 18ª Enmienda es objetivamente el mejor episodio de la temporada 8. La escena del Barón de la Cerveza es oro puro."</p>
+                        <div class="footer-comentario">
+                            <button class="btn-like-rosquilla" onclick="darLike(this)">
+                                🍩 <span class="count-likes">24</span> Rosquillas
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- COMENTARIO 2 -->
+                    <div class="card-comentario">
+                        <div class="header-comentario">
+                            <div class="usuario-info">
+                                <span class="badge-personaje-fav">Lisa Simpson</span>
+                                <strong>@Saxofonista99</strong>
+                            </div>
+                            <span class="fecha-comentario">Hace 1 hora</span>
+                        </div>
+                        <p class="texto-comentario">"¿Alguien más piensa que las primeras 10 temporadas tienen la mejor música de la televisión? La banda sonora de Alf Clausen era increíble."</p>
+                        <div class="footer-comentario">
+                            <button class="btn-like-rosquilla" onclick="darLike(this)">
+                                🍩 <span class="count-likes">18</span> Rosquillas
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- COMENTARIO 3 -->
+                    <div class="card-comentario">
+                        <div class="header-comentario">
+                            <div class="usuario-info">
+                                <span class="badge-personaje-fav">Ned Flanders</span>
+                                <strong>@VecinitoAlegre</strong>
+                            </div>
+                            <span class="fecha-comentario">Hace 3 horas</span>
+                        </div>
+                        <p class="texto-comentario">"¡Hola, holita! Solo pasaba a recordarles que el Zurdorum tiene descuento en tijeras para zurdos esta semana. ¡Dios los bendiga!"</p>
+                        <div class="footer-comentario">
+                            <button class="btn-like-rosquilla" onclick="darLike(this)">
+                                🍩 <span class="count-likes">12</span> Rosquillas
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =========================================
+             BLOQUE DERECHO: ENCUESTA Y DEBATES DESTACADOS
+             ========================================= -->
+        <aside class="columna-sidebar-comunidad">
+
+            <!-- ENCUESTA DE LA SEMANA -->
+            <div class="card-encuesta-semana">
+                <span class="badge-encuesta">ENCUESTA DE LA SEMANA</span>
+                <h4>¿Cuál es la mejor canción de la serie?</h4>
+                
+                <div class="opciones-encuesta">
+                    <button class="btn-opcion-voto" onclick="votar(this, 45)">
+                        <span>El Monorriel</span>
+                        <strong>45%</strong>
+                    </button>
+                    <button class="btn-opcion-voto" onclick="votar(this, 30)">
+                        <span>Los Borbotones</span>
+                        <strong>30%</strong>
+                    </button>
+                    <button class="btn-opcion-voto" onclick="votar(this, 15)">
+                        <span>Homer el Grande (Mauseos)</span>
+                        <strong>15%</strong>
+                    </button>
+                    <button class="btn-opcion-voto" onclick="votar(this, 10)">
+                        <span>Mendozo (McBain)</span>
+                        <strong>10%</strong>
+                    </button>
+                </div>
+                <p class="total-votos-txt" id="total-votos">Total de votos: 1,420</p>
+            </div>
+
+            <!-- REGLAS DE LA COMUNIDAD -->
+            <div class="card-reglas-comunidad">
+                <h4>REGLAS DEL FORO 📜</h4>
+                <ul>
+                    <li>Respetar a todos los fanáticos.</li>
+                    <li>Prohibido el spam o links sospechosos.</li>
+                    <li>No se permite insultar a Bob Patiño... bueno, a nadie.</li>
+                    <li>Diviértete y comparte tus momentos favoritos.</li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- FOOTER MODERNO -->
+    <footer class="footer-moderno">
+        <a href="#" class="btn-subir" title="Volver arriba">↑</a>
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="footer-logo">
+                <p>El archivo definitivo creado por y para verdaderos fanáticos.</p>
+            </div>
+            <div class="footer-columna">
+                <h4>NAVEGACIÓN</h4>
+                <a href="../index.html">Inicio</a>
+                <a href="tv.html">TV</a>
+                <a href="habitantes.html">Habitantes</a>
+                <a href="springfield.html">Springfield</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 - Los Simpson son propiedad de 20th Century Studios.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE INTERACTIVIDAD DE LA COMUNIDAD -->
+    <script>
+    // Función para agregar un nuevo comentario al muro
+    function agregarComentario(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById('nombre-usuario').value;
+        const personaje = document.getElementById('personaje-favorito').value;
+        const mensaje = document.getElementById('mensaje-usuario').value;
+
+        const contenedor = document.getElementById('lista-comentarios');
+
+        const nuevoComentario = document.createElement('div');
+        nuevoComentario.className = 'card-comentario';
+        nuevoComentario.innerHTML = `
+            <div class="header-comentario">
+                <div class="usuario-info">
+                    <span class="badge-personaje-fav">${personaje}</span>
+                    <strong>@${nombre}</strong>
+                </div>
+                <span class="fecha-comentario">Justo ahora</span>
+            </div>
+            <p class="texto-comentario">"${mensaje}"</p>
+            <div class="footer-comentario">
+                <button class="btn-like-rosquilla" onclick="darLike(this)">
+                    🍩 <span class="count-likes">0</span> Rosquillas
+                </button>
+            </div>
+        `;
+
+        // Insertar arriba de los demás
+        contenedor.prepend(nuevoComentario);
+
+        // Limpiar formulario
+        document.getElementById('form-comentario').reset();
+    }
+
+    // Función para aumentar los likes ("Rosquillas")
+    function darLike(boton) {
+        const contador = boton.querySelector('.count-likes');
+        let cantidad = parseInt(contador.textContent);
+        cantidad++;
+        contador.textContent = cantidad;
+        boton.style.transform = 'scale(1.1)';
+        setTimeout(() => boton.style.transform = 'scale(1)', 150);
+    }
+
+    // Función para simular el voto en la encuesta
+    function votar(boton, porcentajeActual) {
+        document.querySelectorAll('.btn-opcion-voto').forEach(b => b.classList.remove('votado'));
+        boton.classList.add('votado');
+        alert("¡Gracias por tu voto en la encuesta de Springfield!");
+    }
+    </script>
+    <!-- SCRIPT DE VERIFICACIÓN DE SESIÓN Y ANIMACIÓN DE SALIDA -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const usuarioActivo = localStorage.getItem('usuario_simpson');
+        const overlay = document.getElementById('bloqueo-overlay');
+        const contenido = document.getElementById('contenido-protegido');
+        
+        const linkTv = document.getElementById('link-tv');
+        const linkComunidad = document.getElementById('link-comunidad');
+        const btnAuth = document.getElementById('btn-auth-header');
+
+        if (!usuarioActivo) {
+            // --- ESTADO: NO LOGUEADO ---
+            if (overlay) overlay.classList.add('activo');
+            if (contenido) contenido.classList.add('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV 🔒';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD 🔒';
+            
+            if (btnAuth) {
+                btnAuth.href = 'registro.html';
+                btnAuth.classList.remove('sesion-activa');
+            }
+
+        } else {
+            // --- ESTADO: LOGUEADO ---
+            if (overlay) overlay.classList.remove('activo');
+            if (contenido) contenido.classList.remove('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+
+            if (btnAuth) {
+                btnAuth.href = '#';
+                btnAuth.title = 'Hacer clic para cerrar sesión';
+                btnAuth.classList.add('sesion-activa'); // Activa el estilo rosa con SALIR ✖
+
+                btnAuth.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('¿Quieres cerrar tu sesión en Springfield?')) {
+                        localStorage.removeItem('usuario_simpson');
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>

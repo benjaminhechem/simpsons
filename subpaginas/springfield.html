@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Simpson | Springfield</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Header Superior -->
+    <div class="header-superior-archivo">
+        <a href="../index.html">
+            <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="logo-pequeno">
+        </a>
+        <!-- BOTÓN CON FOTO DE HOMERO Y EVENTO DE SESIÓN -->
+        <a href="registro.html" id="btn-auth-header" title="Iniciar Sesión / Cerrar Sesión">
+            <img src="../imagenes/homero-login.png" alt="Usuario" class="icono-login" id="img-usuario-header">
+        </a>
+    </div>
+
+    <!-- Navegación Principal (Sin candados fijos) -->
+    <header class="main-header">
+        <nav id="nav-principal">
+            <a href="tv.html" id="link-tv">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-tv"></a>
+            <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="comunidad.html" id="link-comunidad">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-comunidad"></a>
+        </nav>
+    </header>
+
+    <!-- Titulo Rosa -->
+    <div class="titulo-rosa">
+        <h2>SPRINGFIELD</h2>
+    </div>
+
+    <main class="springfield-main-container">
+
+        <!-- =========================================
+             SECCIÓN 1: LUGARES EMBLEMÁTICOS
+             ========================================= -->
+        <section class="bloque-lugares-springfield">
+            
+            <div class="grilla-lugares">
+
+                <!-- LUGAR 1: CASA SIMPSON -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/casasimpson.png" alt="Casa de los Simpson">
+                        <span class="badge-direccion">Avenida Siempreviva 742</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>CASA DE LOS SIMPSON</h4>
+                        <p class="desc-lugar">El hogar de 2 pisos y garaje donde transcurren las mayores locuras de la familia. Escenario del mítico sofá frente al televisor.</p>
+                    </div>
+                </div>
+
+                <!-- LUGAR 2: TABERNA DE MOE -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/tabernamoe.png" alt="Taberna de Moe">
+                        <span class="badge-direccion">Calle Walnut #652</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>TABERNA DE MOE</h4>
+                        <p class="desc-lugar">El refugio nocturno favorito de Homer y Barney. Famoso por la cerveza Duff congelada y las llamadas en broma de Bart.</p>
+                    </div>
+                </div>
+
+                <!-- LUGAR 3: PLANTA NUCLEAR -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/plantanuclear.png" alt="Planta Nuclear">
+                        <span class="badge-direccion">Camino Industrial #100</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>PLANTA NUCLEAR DE SPRINGFIELD</h4>
+                        <p class="desc-lugar">Propiedad del multimillonario Sr. Burns. Fuente principal de energía del pueblo e inagotable fábrica de violaciones a la seguridad laboral.</p>
+                    </div>
+                </div>
+
+                <!-- LUGAR 4: KWIK-E-MART -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/kwikemart.png" alt="Kwik-E-Mart">
+                        <span class="badge-direccion">Avenida Siempreviva #320</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>KWIK-E-MART (EL SÚPER DE APU)</h4>
+                        <p class="desc-lugar">Tienda de conveniencia atendida por Apu Nahasapeemapetilon. Famosa por sus batidos Raspis congelados y precios astronómicos.</p>
+                    </div>
+                </div>
+
+                <!-- LUGAR 5: ESCUELA PRIMARIA -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/escuelaprimaria.png" alt="Escuela Primaria">
+                        <span class="badge-direccion">Calle Plutón #19</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>ESCUELA PRIMARIA DE SPRINGFIELD</h4>
+                        <p class="desc-lugar">Dirigida con mano de hierro por el Director Skinner. Lugar de las travesuras de Bart y las protestas activistas de Lisa.</p>
+                    </div>
+                </div>
+
+                <!-- LUGAR 6: LA MAZMORRA DEL ANDROIDE -->
+                <div class="card-lugar">
+                    <div class="foto-lugar-box">
+                        <img src="../imagenes/tiendacomic.png" alt="La Mazmorra del Androide">
+                        <span class="badge-direccion">Calle Principal #507</span>
+                    </div>
+                    <div class="info-lugar-box">
+                        <h4>LA MAZMORRA DEL ANDROIDE</h4>
+                        <p class="desc-lugar">La meca de los cómics, tarjetas y figuras de acción coleccionables atendida por el sarcástico Jeff Albertson.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================
+             SECCIÓN 2: SOUNDBOARD INTERACTIVO (10 BOTONES / 2 FILAS DE 5)
+             ========================================= -->
+        <section class="bloque-soundboard-springfield">
+            <h3 class="subtitulo-springfield">SPRINGFIELD SOUNDBOARD</h3>
+            <p class="pistas-soundboard">Haz clic en cualquier botón para escuchar la frase en tiempo real:</p>
+
+            <div class="grilla-soundboard">
+
+                <!-- BOTÓN 1 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('doh')">
+                    <span class="icono-sound">🍩</span>
+                    <div class="texto-sound">
+                        <strong>HOMER</strong>
+                        <small>"¡D'oh!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 2 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('ay-caramba')">
+                    <span class="icono-sound">🛹</span>
+                    <div class="texto-sound">
+                        <strong>BART</strong>
+                        <small>"¡Ay, caramba!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 3 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('excelente')">
+                    <span class="icono-sound">📻</span>
+                    <div class="texto-sound">
+                        <strong>SR. BURNS</strong>
+                        <small>"¡Excelente...!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 4 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('haha')">
+                    <span class="icono-sound">👈</span>
+                    <div class="texto-sound">
+                        <strong>NELSON</strong>
+                        <small>"¡HA-HA!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 5 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('hola-vecinito')">
+                    <span class="icono-sound">🙏</span>
+                    <div class="texto-sound">
+                        <strong>FLANDERS</strong>
+                        <small>"¡Hola, holita!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 6 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('vuelva-pronto')">
+                    <span class="icono-sound">🏪</span>
+                    <div class="texto-sound">
+                        <strong>APU</strong>
+                        <small>"¡Vuelva pronto!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 7 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('hola-a-todos')">
+                    <span class="icono-sound">🩺</span>
+                    <div class="texto-sound">
+                        <strong>DR. NICK</strong>
+                        <small>"¡Hola a todos!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 8 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('multiplicate')">
+                    <span class="icono-sound">💥</span>
+                    <div class="texto-sound">
+                        <strong>BART</strong>
+                        <small>"¡Multiplícate x0!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 9 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('krusty-risa')">
+                    <span class="icono-sound">🤡</span>
+                    <div class="texto-sound">
+                        <strong>KRUSTY</strong>
+                        <small>"¡Hey, hey, niños!"</small>
+                    </div>
+                </button>
+
+                <!-- BOTÓN 10 -->
+                <button class="btn-sound-arcade" onclick="reproducirFrase('moe-taberna')">
+                    <span class="icono-sound">🍺</span>
+                    <div class="texto-sound">
+                        <strong>MOE</strong>
+                        <small>"¡Taberna de Moe!"</small>
+                    </div>
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER MODERNO -->
+    <footer class="footer-moderno">
+        <a href="#" class="btn-subir" title="Volver arriba">↑</a>
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="footer-logo">
+                <p>El archivo definitivo creado por y para verdaderos fanáticos.</p>
+            </div>
+            <div class="footer-columna">
+                <h4>NAVEGACIÓN</h4>
+                <a href="../index.html">Inicio</a>
+                <a href="tv.html">TV</a>
+                <a href="habitantes.html">Habitantes</a>
+                <a href="springfield.html">Springfield</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 - Los Simpson son propiedad de 20th Century Studios.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE VERIFICACIÓN DE SESIÓN Y ANIMACIÓN DE SALIDA -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const usuarioActivo = localStorage.getItem('usuario_simpson');
+        const overlay = document.getElementById('bloqueo-overlay');
+        const contenido = document.getElementById('contenido-protegido');
+        
+        const linkTv = document.getElementById('link-tv');
+        const linkComunidad = document.getElementById('link-comunidad');
+        const btnAuth = document.getElementById('btn-auth-header');
+
+        if (!usuarioActivo) {
+            // --- ESTADO: NO LOGUEADO ---
+            if (overlay) overlay.classList.add('activo');
+            if (contenido) contenido.classList.add('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV 🔒';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD 🔒';
+            
+            if (btnAuth) {
+                btnAuth.href = 'registro.html';
+                btnAuth.classList.remove('sesion-activa');
+            }
+
+        } else {
+            // --- ESTADO: LOGUEADO ---
+            if (overlay) overlay.classList.remove('activo');
+            if (contenido) contenido.classList.remove('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+
+            if (btnAuth) {
+                btnAuth.href = '#';
+                btnAuth.title = 'Hacer clic para cerrar sesión';
+                btnAuth.classList.add('sesion-activa'); // Activa el estilo rosa con SALIR ✖
+
+                btnAuth.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('¿Quieres cerrar tu sesión en Springfield?')) {
+                        localStorage.removeItem('usuario_simpson');
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>

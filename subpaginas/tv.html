@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Simpson | Archivo</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    
+    <!-- Header Superior -->
+    <div class="header-superior-archivo">
+        <a href="../index.html">
+            <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="logo-pequeno">
+        </a>
+        <a href="registro.html" id="btn-auth-header" title="Acceso / Salir">
+            <img src="../imagenes/homero-login.png" alt="Usuario" class="icono-login" id="img-usuario-header">
+        </a>
+    </div>
+
+    <!-- Navegación Principal (Sin candados fijos) -->
+    <header class="main-header">
+        <nav id="nav-principal">
+            <a href="tv.html" id="link-tv">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-tv"></a>
+            <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+            <a href="comunidad.html" id="link-comunidad">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-comunidad"></a>
+        </nav>
+    </header>
+
+    <!-- Título Rosa -->
+    <div class="titulo-rosa">
+        <h2>TV</h2>
+        <!-- PANTALLA DE BLOQUEO DE CONTENIDO -->
+    <div id="bloqueo-overlay" class="overlay-bloqueo-arcade">
+        <div class="card-bloqueo-caja">
+            <div class="icono-candado-grande">🔒</div>
+            <span class="badge-bloqueo">CONTENIDO EXCLUSIVO</span>
+            <h2>¡ACCESO RESTRINGIDO!</h2>
+            <p>Debes ser un ciudadano registrado de Springfield para acceder al catálogo completo de episodios y transmisiones.</p>
+
+            <div class="acciones-bloqueo">
+                <a href="registro.html" class="btn-bloqueo-login">INICIAR SESIÓN</a>
+                <a href="registro.html" class="btn-bloqueo-reg">REGISTRARSE</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="tv-main-container contenido-desenfocable" id="contenido-protegido">
+    </div>
+
+    <!-- Contenido Principal: Episodios y TV Reproductor -->
+    <main class="archivo-main">
+        
+        <!-- Columna de Episodios -->
+        <div class="col-episodios">
+            
+            <!-- DESPLEGABLE PERSONALIZADO DE TEMPORADAS -->
+            <div class="contenedor-temporadas">
+                <div class="custom-select-wrapper">
+                    <div class="custom-select-trigger" id="select-trigger">
+                        <span id="texto-seleccionado">TEMPORADA 1</span>
+                        <div class="flecha-select">▼</div>
+                    </div>
+                    <div class="custom-options-menu" id="options-menu">
+                        <div class="custom-option selected" data-value="1">TEMPORADA 1</div>
+                        <div class="custom-option" data-value="2">TEMPORADA 2</div>
+                        <div class="custom-option" data-value="3">TEMPORADA 3</div>
+                        <div class="custom-option" data-value="4">TEMPORADA 4</div>
+                        <div class="custom-option" data-value="5">TEMPORADA 5</div>
+                        <div class="custom-option" data-value="6">TEMPORADA 6</div>
+                        <div class="custom-option" data-value="7">TEMPORADA 7</div>
+                        <div class="custom-option" data-value="8">TEMPORADA 8</div>
+                        <div class="custom-option" data-value="9">TEMPORADA 9</div>
+                        <div class="custom-option" data-value="10">TEMPORADA 10</div>
+                        <div class="custom-option" data-value="11">TEMPORADA 11</div>
+                        <div class="custom-option" data-value="12">TEMPORADA 12</div>
+                        <div class="custom-option" data-value="13">TEMPORADA 13</div>
+                        <div class="custom-option" data-value="14">TEMPORADA 14</div>
+                        <div class="custom-option" data-value="15">TEMPORADA 15</div>
+                        <div class="custom-option" data-value="16">TEMPORADA 16</div>
+                        <div class="custom-option" data-value="17">TEMPORADA 17</div>
+                        <div class="custom-option" data-value="18">TEMPORADA 18</div>
+                        <div class="custom-option" data-value="19">TEMPORADA 19</div>
+                        <div class="custom-option" data-value="20">TEMPORADA 20</div>
+                        <div class="custom-option" data-value="21">TEMPORADA 21</div>
+                        <div class="custom-option" data-value="22">TEMPORADA 22</div>
+                        <div class="custom-option" data-value="23">TEMPORADA 23</div>
+                        <div class="custom-option" data-value="24">TEMPORADA 24</div>
+                        <div class="custom-option" data-value="25">TEMPORADA 25</div>
+                        <div class="custom-option" data-value="26">TEMPORADA 26</div>
+                        <div class="custom-option" data-value="27">TEMPORADA 27</div>
+                        <div class="custom-option" data-value="28">TEMPORADA 28</div>
+                        <div class="custom-option" data-value="29">TEMPORADA 29</div>
+                        <div class="custom-option" data-value="30">TEMPORADA 30</div>
+                        <div class="custom-option" data-value="31">TEMPORADA 31</div>
+                        <div class="custom-option" data-value="32">TEMPORADA 32</div>
+                        <div class="custom-option" data-value="33">TEMPORADA 33</div>
+                        <div class="custom-option" data-value="34">TEMPORADA 34</div>
+                        <div class="custom-option" data-value="35">TEMPORADA 35</div>
+                        <div class="custom-option" data-value="36">TEMPORADA 36</div>
+                        <div class="custom-option" data-value="37">TEMPORADA 37</div>
+                        <div class="custom-option" data-value="38">🔴 TEMPORADA 38 (ESTRENO)</div>
+                    </div>
+                </div>
+                <span class="punto-live"></span>
+            </div>
+
+            <!-- Lista de Episodios con Scroll -->
+            <div id="lista-episodios-contenedor" class="lista-episodios-scroll">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+
+        </div>
+
+        <!-- Columna TV Reproductor -->
+        <div class="col-tv">
+            <div class="contenedor-tv" id="contenedor-tv">
+                <img src="../imagenes/tv.png" alt="Televisor" class="tv-marco">
+                <!-- IFRAME CON VIDEO DE TOM Y DALY (ITCHY & SCRATCHY) -->
+                <iframe id="reproductor-tv" class="tv-pantalla-iframe" 
+                        src="https://www.youtube.com/embed/CSp24fX25U0?autoplay=1&mute=1&controls=1&loop=1" 
+                        title="El show de Tom y Daly" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <p class="texto-tv" id="texto-tv-estado">REPRODUCIENDO: T1 - E1 "Especial de Navidad de los Simpson"</p>
+        </div>
+
+    </main>
+
+    <!-- NUEVO FOOTER MODERNO -->
+    <footer class="footer-moderno">
+        <!-- BOTÓN VOLVER ARRIBA -->
+        <a href="#" class="btn-subir" title="Volver arriba">↑</a>
+
+        <div class="footer-contenido">
+            <!-- Columna Izquierda: Identidad -->
+            <div class="footer-columna">
+                <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="footer-logo">
+                <p>El archivo definitivo creado por y para verdaderos fanáticos.</p>
+            </div>
+            
+            <!-- Columna Derecha: Navegación -->
+            <div class="footer-columna">
+                <h4>NAVEGACIÓN</h4>
+                <a href="../index.html">Inicio</a>
+                <a href="tv.html">TV</a>
+                <a href="habitantes.html">Habitantes</a>
+                <a href="springfield.html">Springfield</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 - Los Simpson son propiedad de 20th Century Studios.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE INTERACTIVIDAD DE EPISODIOS Y REPRODUCTOR DE TV -->
+    <script>
+        const conteoCapitulos = {
+            1: 13, 2: 22, 3: 24, 4: 22, 5: 22, 6: 25, 7: 25, 8: 25, 9: 25, 10: 23,
+            11: 22, 12: 21, 13: 22, 14: 22, 15: 22, 16: 21, 17: 22, 18: 22, 19: 20, 20: 21,
+            21: 23, 22: 22, 23: 22, 24: 22, 25: 22, 26: 22, 27: 22, 28: 22, 29: 21, 30: 23,
+            31: 22, 32: 22, 33: 22, 34: 22, 35: 18, 36: 22, 37: 22, 38: 10
+        };
+
+        // Clips de Tom y Daly / Los Simpson
+        const videosTomYDaly = [
+            "https://www.youtube.com/embed/CSp24fX25U0?autoplay=1&mute=0&controls=1",
+            "https://www.youtube.com/embed/S2X5pY51sW8?autoplay=1&mute=0&controls=1",
+            "https://www.youtube.com/embed/1v0UjR4wEGE?autoplay=1&mute=0&controls=1"
+        ];
+
+        const episodiosDestacados = [
+            { titulo: "Especial de Navidad de los Simpson", desc: "Homer intenta ganar dinero extra como Papá Noel en un canódromo tras quedarse sin aguinaldo." },
+            { titulo: "Bart es un genio", desc: "Bart hace trampa en un test de CI y es enviado a una escuela para niños superdotados." },
+            { titulo: "La odisea de Homero", desc: "Tras ser despedido de la planta nuclear, Homer se convierte en un ferviente activista de la seguridad." },
+            { titulo: "Una familia modelo", desc: "Avergonzado por su familia en el pícnic de la empresa, Homer empeña la TV para pagar terapia familiar." },
+            { titulo: "El general Bart", desc: "Bart organiza un pequeño ejército de niños para defenderse de los constantes abusos de Nelson Muntz." },
+            { titulo: "Marge contra el monorriel", desc: "Springfield recibe una fortuna e invierte en un defectuoso tren monorriel propuesto por un estafador." },
+            { titulo: "El cuarteto de Homero", desc: "Homer recuerda su época de gloria como líder de 'Los Borbotones', un exitoso grupo de música barbershop." },
+            { titulo: "¿Quién mató al Sr. Burns?", desc: "El Sr. Burns bloquea el sol de Springfield y resulta herido por un agresor misterioso." },
+            { titulo: "Cabo de miedosos", desc: "Bob Patiño sale de prisión y persigue a la familia Simpson hasta su nueva casa flotante." },
+            { titulo: "Homero al bate", desc: "El Sr. Burns contrata a jugadores profesionales de béisbol de las Grandes Ligas para el equipo de la planta." }
+        ];
+
+        const contenedorLista = document.getElementById('lista-episodios-contenedor');
+        const trigger = document.getElementById('select-trigger');
+        const optionsMenu = document.getElementById('options-menu');
+        const textoSeleccionado = document.getElementById('texto-seleccionado');
+        const options = document.querySelectorAll('.custom-option');
+        const reproductorTv = document.getElementById('reproductor-tv');
+        const textoTvEstado = document.getElementById('texto-tv-estado');
+        const contenedorTv = document.getElementById('contenedor-tv');
+
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            optionsMenu.classList.toggle('show');
+            trigger.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function() {
+            optionsMenu.classList.remove('show');
+            trigger.classList.remove('open');
+        });
+
+        function reproducirEpisodio(titulo, tag, indexVideo) {
+            contenedorTv.classList.add('cambio-canal');
+            setTimeout(() => {
+                contenedorTv.classList.remove('cambio-canal');
+            }, 300);
+
+            const videoUrl = videosTomYDaly[indexVideo % videosTomYDaly.length];
+            reproductorTv.src = videoUrl;
+            textoTvEstado.textContent = `REPRODUCIENDO: ${tag} "${titulo}"`;
+        }
+
+        function renderizarEpisodios(numTemporada) {
+            contenedorLista.innerHTML = '';
+            const total = conteoCapitulos[numTemporada] || 22;
+
+            for (let i = 1; i <= total; i++) {
+                const idx = (parseInt(numTemporada) * 3 + i) % episodiosDestacados.length;
+                const epData = episodiosDestacados[idx];
+
+                const numImagen = (i % 3) === 1 ? '1.jpeg' : ((i % 3) === 2 ? '2.jpg' : '3.jpg');
+                const rutaImagen = `../imagenes/episodio${numImagen}`;
+                const tagCapitulo = `T${numTemporada} - E${i}`;
+
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta-episodio';
+                tarjeta.style.cursor = "pointer";
+                tarjeta.innerHTML = `
+                    <img src="${rutaImagen}" alt="${epData.titulo}">
+                    <div class="info-episodio">
+                        <span class="badge-capitulo">${tagCapitulo}</span>
+                        <h4 class="titulo-episodio">${epData.titulo} <small>(22 min)</small></h4>
+                        <p class="desc-episodio">${epData.desc}</p>
+                    </div>
+                `;
+
+                tarjeta.addEventListener('click', function() {
+                    document.querySelectorAll('.tarjeta-episodio').forEach(t => t.classList.remove('reproduciendo'));
+                    tarjeta.classList.add('reproduciendo');
+                    reproducirEpisodio(epData.titulo, tagCapitulo, i);
+                });
+
+                contenedorLista.appendChild(tarjeta);
+            }
+        }
+
+        options.forEach(opt => {
+            opt.addEventListener('click', function(e) {
+                e.stopPropagation();
+                options.forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const val = this.getAttribute('data-value');
+                textoSeleccionado.textContent = this.textContent;
+                
+                optionsMenu.classList.remove('show');
+                trigger.classList.remove('open');
+                
+                renderizarEpisodios(val);
+            });
+        });
+
+        renderizarEpisodios(1);
+    </script>
+
+<!-- SCRIPT DE VERIFICACIÓN DE SESIÓN Y ANIMACIÓN DE SALIDA -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const usuarioActivo = localStorage.getItem('usuario_simpson');
+        const overlay = document.getElementById('bloqueo-overlay');
+        const contenido = document.getElementById('contenido-protegido');
+        
+        const linkTv = document.getElementById('link-tv');
+        const linkComunidad = document.getElementById('link-comunidad');
+        const btnAuth = document.getElementById('btn-auth-header');
+
+        if (!usuarioActivo) {
+            // --- ESTADO: NO LOGUEADO ---
+            if (overlay) overlay.classList.add('activo');
+            if (contenido) contenido.classList.add('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV 🔒';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD 🔒';
+            
+            if (btnAuth) {
+                btnAuth.href = 'registro.html';
+                btnAuth.classList.remove('sesion-activa');
+            }
+
+        } else {
+            // --- ESTADO: LOGUEADO ---
+            if (overlay) overlay.classList.remove('activo');
+            if (contenido) contenido.classList.remove('bloqueado');
+
+            if (linkTv) linkTv.innerHTML = 'TV <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+            if (linkComunidad) linkComunidad.innerHTML = 'COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon">';
+
+            if (btnAuth) {
+                btnAuth.href = '#';
+                btnAuth.title = 'Hacer clic para cerrar sesión';
+                btnAuth.classList.add('sesion-activa'); // Activa el estilo rosa con SALIR ✖
+
+                btnAuth.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('¿Quieres cerrar tu sesión en Springfield?')) {
+                        localStorage.removeItem('usuario_simpson');
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>
