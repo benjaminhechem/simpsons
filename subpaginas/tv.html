@@ -8,46 +8,45 @@
 </head>
 <body>
     
-    <!-- Header Superior -->
-    <div class="header-superior-archivo">
-        <a href="../index.html">
-            <img src="../imagenes/logoprincipal.png" alt="The Simpsons" class="logo-pequeno">
-        </a>
-        <a href="registro.html" id="btn-auth-header" title="Acceso / Salir">
-            <img src="../imagenes/homero-login.png" alt="Usuario" class="icono-login" id="img-usuario-header">
-        </a>
-    </div>
+   <header class="main-header">
+    <!-- LOGO A LA IZQUIERDA (Vuelve al Home) -->
+    <a href="../index.html" class="logo-header-link" title="Volver al Inicio">
+        <img src="../imagenes/logoprincipal.png" alt="Los Simpson" class="logo-header">
+    </a>
 
-    <!-- Navegación Principal (Sin candados fijos) -->
-    <header class="main-header">
-        <nav id="nav-principal">
-            <a href="tv.html" id="link-tv">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-tv"></a>
-            <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
-            <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
-            <a href="comunidad.html" id="link-comunidad">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-comunidad"></a>
-        </nav>
-    </header>
+    <!-- MENÚ CENTRAL -->
+    <nav id="nav-principal">
+        <a href="tv.html" id="link-tv">TV <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-tv"></a>
+        <a href="habitantes.html">HABITANTES <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+        <a href="springfield.html">SPRINGFIELD <img src="../imagenes/iconorosquilla.png" class="nav-icon"></a>
+        <a href="comunidad.html" id="link-comunidad">COMUNIDAD <img src="../imagenes/iconorosquilla.png" class="nav-icon" id="icono-comunidad"></a>
+    </nav>
 
-    <!-- Título Rosa -->
-    <div class="titulo-rosa">
-        <h2>TV</h2>
-        <!-- PANTALLA DE BLOQUEO DE CONTENIDO -->
-    <div id="bloqueo-overlay" class="overlay-bloqueo-arcade">
-        <div class="card-bloqueo-caja">
-            <div class="icono-candado-grande">🔒</div>
-            <span class="badge-bloqueo">CONTENIDO EXCLUSIVO</span>
-            <h2>¡ACCESO RESTRINGIDO!</h2>
-            <p>Debes ser un ciudadano registrado de Springfield para acceder al catálogo completo de episodios y transmisiones.</p>
+    <!-- BOTÓN AUTH A LA DERECHA -->
+    <a href="registro.html" id="btn-auth-header" class="btn-login">LOG IN</a>
+</header>
 
-            <div class="acciones-bloqueo">
-                <a href="registro.html" class="btn-bloqueo-login">INICIAR SESIÓN</a>
-                <a href="registro.html" class="btn-bloqueo-reg">REGISTRARSE</a>
-            </div>
+<!-- Título Rosa (Franja de sección) -->
+<div class="titulo-rosa">
+    <h2>TV</h2>
+</div>
+
+<!-- PANTALLA DE BLOQUEO DE CONTENIDO -->
+<div id="bloqueo-overlay" class="overlay-bloqueo-arcade">
+    <div class="card-bloqueo-caja">
+        <div class="icono-candado-grande">🔒</div>
+        <span class="badge-bloqueo">CONTENIDO EXCLUSIVO</span>
+        <h2>¡ACCESO RESTRINGIDO!</h2>
+        <p>Debes ser un ciudadano registrado de Springfield para acceder al catálogo completo de episodios y transmisiones.</p>
+
+        <div class="acciones-bloqueo">
+            <a href="registro.html" class="btn-bloqueo-login">INICIAR SESIÓN</a>
+            <a href="registro.html" class="btn-bloqueo-reg">REGISTRARSE</a>
         </div>
     </div>
+</div>
 
-    <main class="tv-main-container contenido-desenfocable" id="contenido-protegido">
-    </div>
+<main class="tv-main-container contenido-desenfocable" id="contenido-protegido">
 
     <!-- Contenido Principal: Episodios y TV Reproductor -->
     <main class="archivo-main">

@@ -2428,3 +2428,28 @@ body::after {
 .main-header #btn-auth-header.sesion-activa:hover {
     transform: translateY(calc(-50% - 2px)) !important;
 }
+
+/* Oculta el texto "LOG IN" del HTML cuando la sesión está activa */
+#btn-auth-header.sesion-activa {
+    font-size: 0 !important;
+}
+
+/* LOGO EN EL HEADER (ANCLADO A LA IZQUIERDA) */
+.logo-header-link {
+    position: absolute !important;
+    left: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.logo-header {
+    height: 42px !important;
+    width: auto !important;
+    transition: transform 0.2s ease !important;
+}
+
+.logo-header:hover {
+    transform: scale(1.08) !important;
+}
